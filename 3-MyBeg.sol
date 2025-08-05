@@ -55,4 +55,11 @@ contract MyBeg {
     // 将合约的余额发送给合约的创建者
     payable(msg.sender).transfer(address(this).balance);
   }
+
+  // 直接转账也记录到捐赠记录中
+  receive() external payable {
+    if(msg.value > 0) {
+      donate();
+    }
+  }
 }
